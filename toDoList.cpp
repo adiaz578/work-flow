@@ -12,6 +12,7 @@ class TodoItem
         int id;
         string description;
         bool completed;
+        bool inProgress;
     //Constructor?? How does this interact with the class? why?
     public: 
         TodoItem(): id(0), description(""), completed(false){}
@@ -31,7 +32,11 @@ class TodoItem
         string getDescription() {return description;}
         bool isCompleted() {return completed;}
 
+        bool isInProgress() { return inProgress; }
+
         void setCompleted(bool val){ completed = val; }
+
+        void setInProgress(bool val){ inProgress = val; }
 };
 
 int main()
@@ -49,9 +54,6 @@ int main()
     //start with a fresh clear list
     todoItems.clear(); 
 
-    // TodoItem test;
-    // test.create("this is a test");
-    // todoItems.push_back(test);
 
     while(1)
     {
@@ -63,19 +65,23 @@ int main()
         {
             string completed = it->isCompleted() ? "Done" : "Not Done";
 
+            string inProgress = it->isInProgress() ? "In Progress" : "Open"; 
+
             cout << it->getId() << " | " << it->getDescription() << " | "
-                 << completed << endl;
+                 << completed << "|" << inProgress << endl;
         }
 
         if (todoItems.empty())
         {
             cout << "Add your first todo!" << endl;
+            
         }
 
         cout << endl << endl;
 
         cout << "[a]dd a new Todo" << endl; 
-        cout << "[c]complete a Todo" << endl;
+        cout << "[c]omplete a Todo" << endl;
+        cout << "[i]nprogress" << endl;
         cout << "[q]uit" << endl;
 
         cout << "choice: ";
@@ -113,6 +119,18 @@ int main()
                 }
             }
 
+        }
+        //test 'i' integration
+        else if(input_option == 'i')
+        {
+            cout << "Enter ID to mark In Progress: ";
+            cin >> input_id;
+
+            for(it = todoItems.begin(); it != todoItems.end(); it++)
+            {
+                it->setInProgress(true); 
+                break;
+            }
         }
         
 

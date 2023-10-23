@@ -77,6 +77,12 @@ int main()
             
         }
 
+        //to add a todo first before any other option
+        if(input_option != 'a')
+        {
+            cout << "Please enter a Todo first!" << endl;
+        }
+
         cout << endl << endl;
 
         cout << "[a]dd a new Todo" << endl; 
@@ -120,7 +126,7 @@ int main()
             }
 
         }
-        //test 'i' integration
+        //test 'i' integration -> worked
         else if(input_option == 'i')
         {
             cout << "Enter ID to mark In Progress: ";
